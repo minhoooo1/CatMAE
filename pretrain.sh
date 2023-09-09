@@ -1,0 +1,1 @@
+python main_pretrain.py --config_file configs/pretrain.json

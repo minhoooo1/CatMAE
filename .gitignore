@@ -1,0 +1,12 @@
+__pycache__/
+output_dir/
+output_dir_*
+zmass.py
+error_log.txt
+mass/
+temp.py
+ablation/
+big_ablation/
+pretrain/
+small_ablation/
+small_ablation_ep50/
