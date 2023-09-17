@@ -193,7 +193,6 @@ class MaskedAutoencoderViT(nn.Module):
         self.norm_pix_loss = norm_pix_loss
         
         self.grid_size_h_w = (img_size//patch_size, img_size//patch_size) if isinstance(img_size, int) else (img_size[0]//patch_size, img_size[1]//patch_size)
-        print(f"\n### grid_size_h_w :{self.grid_size_h_w}###\n")
         self.initialize_weights()
 
     def initialize_weights(self):
@@ -320,15 +319,12 @@ class MaskedAutoencoderViT(nn.Module):
             for blk in self.blocks:
                 x = blk(x)
             x = self.norm(x)
-            
-            # remove cls token
-            x = x[:, 1:, :]
 
             return x
     
     def forward_decoder(self, x1, x2_latent, x2_mask, x2_ids_restore, x3_latent, x3_ids_restore):
         # embed tokens
-        x1 = self.decoder_embed(x1)                                 # [2, 196, 768] -> [2, 196, 512]
+        x1 = self.decoder_embed(x1)                                 # [2, 1+196, 768] -> [2, 1+196, 512]
         x2_latent = self.decoder_embed(x2_latent)                   # [2, 1+49, 768] -> [2, 1+49, 512]
         x3_latent = self.decoder_embed(x3_latent)                   # [2, 1+49, 768] -> [2, 1+49, 512]
 
@@ -348,12 +344,12 @@ class MaskedAutoencoderViT(nn.Module):
         x3 = torch.cat([x3_latent[:, :1, :], x3_], dim=1)  # append cls token                                          # [2, 1+196, 512]
         
         # add pos embed
-        x1 = x1 + self.decoder_pos_embed[:, 1:, :]    # [2, 196, 512]
+        x1 = x1 + self.decoder_pos_embed              # [2, 1+196, 512]
         x2 = x2 + self.decoder_pos_embed              # [2, 1+196, 512]
         x3 = x3 + self.decoder_pos_embed              # [2, 1+196, 512]
         
         # x2_latent for x3 extract infomation
-        x2_latent_for_x3 = x2[:, 1:, :][x2_mask.eq(0)].view(B, x2_lt_L_-1, C) # after decoder_embed: x2_latent + decoder_pos_embed
+        x2_latent_for_x3 = torch.cat( [x2[:, :1, :], x2[:, 1:, :][x2_mask.eq(0)].view(B, x2_lt_L_-1, C)], dim=1)    # CLS and x2_latent   
         x1_x2_for_x3 = torch.cat([x1 + self.decoder_frame_info[0], x2_latent_for_x3 + self.decoder_frame_info[1]], dim=1)
 
         # apply Transformer blocks

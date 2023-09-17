@@ -1,9 +1,10 @@
 {
-    "pretrain_name": "catmae",
+    "pretrain_name": "catmae-1600ep",
+    "patch_size": 16,
     "batch_size": 512,
     "gpus": "0,1",
-    "epochs": 500,
-    "warmup_epochs": 10,
+    "epochs": 800,
+    "warmup_epochs": 16,
     "per_save_epochs": 50,
     "mask_ratios": [0.95, 0.95],
     "rec_weights": [0.8, 1.0],

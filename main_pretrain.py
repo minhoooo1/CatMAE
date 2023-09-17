@@ -38,14 +38,14 @@ import torch.multiprocessing as mp
 
 def get_args_parser():
     parser = argparse.ArgumentParser('CatMAE pre-training', add_help=False)
-    parser.add_argument('--pretrain_name', default="catmae", type=str, help="branch-commit")
+    parser.add_argument('--pretrain_name', default="catmae-1600ep", type=str, help="branch-commit")
     parser.add_argument('--config_file', type=str, default="", help="config file path")
     parser.add_argument('--batch_size', default=512, type=int,
                         help='Batch size per GPU (effective batch size is batch_size * accum_iter * # gpus')
     parser.add_argument('--accum_iter', default=2, type=int,
                         help='Accumulate gradient iterations (for increasing the effective batch size under memory constraints)')
-    parser.add_argument('--epochs', default=400, type=int)
-    parser.add_argument('--per_save_epochs', default=25, type=int)
+    parser.add_argument('--epochs', default=800, type=int)
+    parser.add_argument('--per_save_epochs', default=50, type=int)
 
     # Model parameters
     parser.add_argument('--model', default='catmae_vit_small', type=str, metavar='MODEL',
@@ -54,7 +54,7 @@ def get_args_parser():
     parser.add_argument('--patch_size', default=16, type=int,
                         help='ViT patch size')
     
-    parser.add_argument('--decoder_dim_dep_head', default=[192, 2, 3], type=list,
+    parser.add_argument('--decoder_dim_dep_head', default=[192, 4, 3], type=list,
                         help='Decoder dim dpeths heads config')
     
     parser.add_argument('--input_size', default=(224, 224), type=tuple,
@@ -78,7 +78,7 @@ def get_args_parser():
     parser.add_argument('--min_lr', type=float, default=0., metavar='LR',
                         help='lower lr bound for cyclic schedulers that hit 0')
 
-    parser.add_argument('--warmup_epochs', type=int, default=8, metavar='N',
+    parser.add_argument('--warmup_epochs', type=int, default=16, metavar='N',
                         help='epochs to warmup LR')
     
     parser.add_argument('--rec_weights', default=[0.8, 1.0], type=float, help='f3 rec weight')
@@ -86,7 +86,7 @@ def get_args_parser():
     # Dataset parameters
     parser.add_argument('--data_path', default='/data/cv/data/Kinetics-400/videos_train/', type=str,
                         help='dataset path')
-    parser.add_argument('--frame_interval', default=[[4,16],[4,16]], type=list)
+    parser.add_argument('--frame_interval', default=[[4,16],[4,48]], type=list)
     parser.add_argument('--repeated_sampling', default=2, type=int)
     
     parser.add_argument('--output_dir', default="./pretrain/",
@@ -114,18 +114,25 @@ def get_args_parser():
         config = json.load(f)
     
     
-    args.pretrain_name = config.get("pretrain_name", None)
-    args.batch_size = config.get("batch_size", None)
-    args.gpus = config.get("gpus", None)
-    args.epochs = config.get("epochs", None)
-    args.warmup_epochs = config.get("warmup_epochs", None)
-    args.per_save_epochs = config.get("per_save_epochs", None)
-    args.mask_ratios = config.get("mask_ratios", None)
-    args.rec_weights = config.get("rec_weights", None)
-    args.frame_interval = config.get("frame_interval", None)
-    args.decoder_dim_dep_head = config.get("decoder_dim_dep_head", None)
-    args.output_dir = config.get("output_dir", None)
-    args.log_dir = config.get("log_dir", None)
+    # args.pretrain_name = config.get("pretrain_name", args.pretrain_name)
+    # args.batch_size = config.get("batch_size", args.batch_size)
+    # args.gpus = config.get("gpus", args.gpus)
+    # args.epochs = config.get("epochs", args.epochs)
+    # args.warmup_epochs = config.get("warmup_epochs", args.warmup_epochs)
+    # args.per_save_epochs = config.get("per_save_epochs", args.per_save_epochs)
+    # args.mask_ratios = config.get("mask_ratios", args.mask_ratios)
+    # args.rec_weights = config.get("rec_weights", args.rec_weights)
+    # args.frame_interval = config.get("frame_interval", args.frame_interval)
+    # args.decoder_dim_dep_head = config.get("decoder_dim_dep_head", args.decoder_dim_dep_head)
+    # args.output_dir = config.get("output_dir", args.output_dir)
+    # args.log_dir = config.get("log_dir", args.log_dir)
+    
+    for key in config.keys():
+        if hasattr(args, key):
+            setattr(args, key, config[key])
+        else:
+            raise ValueError(f"Key '{key}' found in config file is not a valid argument")
+    
     
     
     now = datetime.datetime.now()
