@@ -410,6 +410,13 @@ def catmae_vit_small(patch_size=16, decoder_embed_dim=192, decoder_depth=4, deco
         mlp_ratio=4, norm_layer=partial(nn.LayerNorm, eps=1e-6), **kwargs)
     return model
 
+def catmae_vit_base(patch_size=16, decoder_embed_dim=512, decoder_depth=8, decoder_num_heads=16, **kwargs):
+    model = MaskedAutoencoderViT(
+        patch_size=patch_size, embed_dim=768, depth=12, num_heads=12,
+        decoder_embed_dim=decoder_embed_dim, decoder_depth=decoder_depth, decoder_num_heads=decoder_num_heads,
+        mlp_ratio=4, norm_layer=partial(nn.LayerNorm, eps=1e-6), **kwargs)
+    return model
+
 
 
 
