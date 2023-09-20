@@ -1,7 +1,7 @@
 ## Concatenated Masked Autoencoders as Spatial-Temporal Learner: A PyTorch Implementation
 
 <p align="center">
-<img src="https://github.com/minhoooo1/CatMAE/master/figures/arch.png" width="600">
+<img src="https://github.com/minhoooo1/CatMAE/blob/master/figures/arch.png" width="600">
 </p>
 
 This is a PyTorch re-implementation of the paper [Concatenated Masked Autoencoders as Spatial-Temporal Learner]():
@@ -27,7 +27,7 @@ To pre-train Cat-ViT-Small (recommended default), run the following commond:
 bash pretrain.sh configs/pretrain.json
 ```
 
-* pretrain.json (only contains some arguments) :
+pretrain.json (only contains some arguments) :
 
 - The effective batch size is `batch_size` (512) * `gpus` (2) * `accum_iter` (2) = 2048
 - The effective epochs is `epochs` (800) * `repeated_sampling` （2） = 1600
