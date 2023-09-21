@@ -1,7 +1,7 @@
 ## Concatenated Masked Autoencoders as Spatial-Temporal Learner: A PyTorch Implementation
 
 <p align="center">
-<img src="https://github.com/minhoooo1/CatMAE/blob/master/figures/arch.png" width="600">
+<img src="https://github.com/minhoooo1/CatMAE/blob/master/figures/arch.png" width="800">
 </p>
 
 This is a PyTorch re-implementation of the paper [Concatenated Masked Autoencoders as Spatial-Temporal Learner]():
