@@ -4,7 +4,7 @@
 <img src="https://github.com/minhoooo1/CatMAE/blob/master/figures/arch.png" width="800">
 </p>
 
-This is a PyTorch re-implementation of the paper [Concatenated Masked Autoencoders as Spatial-Temporal Learner]():
+This is a PyTorch re-implementation of the paper [Concatenated Masked Autoencoders as Spatial-Temporal Learner](https://arxiv.org/abs/2311.00961):
 
 
 ##  Requirements
@@ -24,16 +24,16 @@ We use two datasets, [Kinetics-400](https://deepmind.com/research/open-source/ki
 To pre-train Cat-ViT-Small (recommended default), run the following commond:
 
 ```
-bash pretrain.sh configs/pretrain.json
+bash pretrain.sh configs/pretrain_catmae_vit-s-16.json
 ```
 
-pretrain.json (only contains some arguments) :
-
-- The effective batch size is `batch_size` (512) * `gpus` (2) * `accum_iter` (2) = 2048
-- The effective epochs is `epochs` (800) * `repeated_sampling` （2） = 1600
-- The default `model` is catmae_vit_small (with default patch_size and decoder_dim_dep_head), and for training VIT-B, you can alse change it to catmae_vit_base.
+Some important arguments
+- The `data_path` is /path/to/Kinetics-400/videos_train/
+- The effective batch size is `batch_size` (256) * num of `gpus` (4) * `accum_iter` (2) = 2048
+- The effective epochs is `epochs` (150) * `repeated_sampling` （2） = 300
+- The default `model` is **catmae_vit_small** (with default patch_size and decoder_dim_dep_head), and for training VIT-B, you can alse change it to **catmae_vit_base**.
 - Here we use `--norm_pix_loss` as the target for better representation learning.
-- `blr` is the base learning rate. The actual `lr` is computed by the [linear scaling rule](https://arxiv.org/abs/1706.02677): `lr` = `blr` * effective batch size / 256. 
+- `blr` is the base learning rate. The actual `lr` is computed by the [linear scaling rule](https://arxiv.org/abs/1706.02677): `lr` = `blr` * effective_batch_size / 256. 
 
 
 ## Pre-trained checkpoints

@@ -115,19 +115,6 @@ def get_args_parser():
         config = json.load(f)
     
     
-    # args.pretrain_name = config.get("pretrain_name", args.pretrain_name)
-    # args.batch_size = config.get("batch_size", args.batch_size)
-    # args.gpus = config.get("gpus", args.gpus)
-    # args.epochs = config.get("epochs", args.epochs)
-    # args.warmup_epochs = config.get("warmup_epochs", args.warmup_epochs)
-    # args.per_save_epochs = config.get("per_save_epochs", args.per_save_epochs)
-    # args.mask_ratios = config.get("mask_ratios", args.mask_ratios)
-    # args.rec_weights = config.get("rec_weights", args.rec_weights)
-    # args.frame_interval = config.get("frame_interval", args.frame_interval)
-    # args.decoder_dim_dep_head = config.get("decoder_dim_dep_head", args.decoder_dim_dep_head)
-    # args.output_dir = config.get("output_dir", args.output_dir)
-    # args.log_dir = config.get("log_dir", args.log_dir)
-    
     for key in config.keys():
         if hasattr(args, key):
             setattr(args, key, config[key])
