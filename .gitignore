@@ -10,3 +10,5 @@ big_ablation/
 pretrain/
 small_ablation/
 small_ablation_ep50/
+
+*.pt

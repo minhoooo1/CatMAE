@@ -37,13 +37,29 @@ Some important arguments
 
 
 ## Pre-trained checkpoints
+The following table provides the pre-trained checkpoints used in the paper
+<table><tbody>
+<!-- START TABLE -->
+<!-- TABLE HEADER -->
+<th valign="bottom"></th>
+<th valign="bottom">ViT/16-Small</th>
+<th valign="bottom">ViT/8-Small</th>
+<!-- TABLE BODY -->
+<tr><td align="left">pre-trained checkpoint</td>
+<td align="center"><a href="https://drive.google.com/file/d/1QUFeeb8U-WoDvOkI768R7B8BpmXw-jkg/view?usp=drive_link">download</a></td>
+<td align="center"><a href="https://drive.google.com/file/d/1jaYjnXYOJFSVoXfQWTJfPix6tddQ4YMF/view?usp=drive_link">download</a></td>
+</tr>
+<tr><td align="left">DAVIS 2017 J&Fm</td>
+<td align="center">62.5</td>
+<td align="center">70.4</td>
+</tr>
 
-### Coming Soon
+</tbody></table>
 
 
 ## Video segment in DAVIS-2017
 
-### Coming Soon
+The Video segment instruction is in [DAVIS.md](downstream/davis2017-seg/DAVIS.md).
 
 ## Action recognition in Kinetics-400
 
