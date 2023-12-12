@@ -349,7 +349,7 @@ class MaskedAutoencoderViT(nn.Module):
         x3 = x3 + self.decoder_pos_embed              # [2, 1+196, 512]
         
         # x2_latent for x3 extract infomation
-        x2_latent_for_x3 = torch.cat( [x2[:, :1, :], x2[:, 1:, :][x2_mask.eq(0)].view(B, x2_lt_L_-1, C)], dim=1)    # CLS and x2_latent   
+        x2_latent_for_x3 = torch.cat( [x2[:, :1, :], x2[:, 1:, :][x2_mask.eq(0)].view(B, x2_lt_L_-1, C)], dim=1)    # CLS and x2_latent
         x1_x2_for_x3 = torch.cat([x1 + self.decoder_frame_info[0], x2_latent_for_x3 + self.decoder_frame_info[1]], dim=1)
 
         # apply Transformer blocks
@@ -403,7 +403,7 @@ class MaskedAutoencoderViT(nn.Module):
         return loss, loss_x2, loss_x3
 
 
-def catmae_vit_small(patch_size=16, decoder_embed_dim=192, decoder_depth=4, decoder_num_heads=3, **kwargs):
+def catmae_vit_small(patch_size=16, decoder_embed_dim=256, decoder_depth=4, decoder_num_heads=3, **kwargs):
     model = MaskedAutoencoderViT(
         patch_size=patch_size, embed_dim=384, depth=12, num_heads=6,
         decoder_embed_dim=decoder_embed_dim, decoder_depth=decoder_depth, decoder_num_heads=decoder_num_heads,

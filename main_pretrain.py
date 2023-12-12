@@ -46,6 +46,7 @@ def get_args_parser():
                         help='Accumulate gradient iterations (for increasing the effective batch size under memory constraints)')
     parser.add_argument('--epochs', default=800, type=int)
     parser.add_argument('--per_save_epochs', default=50, type=int)
+    parser.add_argument('--use_vire', default=False, type=bool)
 
     # Model parameters
     parser.add_argument('--model', default='catmae_vit_small', type=str, metavar='MODEL',
@@ -130,6 +131,7 @@ def get_args_parser():
     for key in config.keys():
         if hasattr(args, key):
             setattr(args, key, config[key])
+            print(config[key], type(config[key]))
         else:
             raise ValueError(f"Key '{key}' found in config file is not a valid argument")
     
@@ -183,7 +185,7 @@ def main(rank, args):
     transform_totensor = transforms.Compose([
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
-    dataset_train = CustomKinetics400Dataset(args.data_path ,transform_triple, transform_totensor, args.frame_interval, args.repeated_sampling)
+    dataset_train = CustomKinetics400Dataset(args.data_path ,transform_triple, transform_totensor, args.frame_interval, args.repeated_sampling, args.use_vire)
     
 
     if True:  # args.distributed:

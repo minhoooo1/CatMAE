@@ -46,7 +46,7 @@ class TripRandomResizedCrop:
     
     
 class CustomKinetics400Dataset(Dataset):
-    def __init__(self, video_dir, transform_triple, transform_totensor, frame_interval=[[4,48],[4,48]], repeated_sampling=2):
+    def __init__(self, video_dir, transform_triple, transform_totensor, frame_interval=[[4,48],[4,48]], repeated_sampling=2, use_vire=False):
         s = time.time()
         print("start to find videos")
         self.videos_path = glob(os.path.join(video_dir, "*.mp4"))
@@ -57,6 +57,7 @@ class CustomKinetics400Dataset(Dataset):
         
         self.frame_interval = frame_interval
         self.repeated_sampling = repeated_sampling
+        self.use_vire = use_vire
         
     def __len__(self):
         return self.repeated_sampling*len(self.videos_path)
@@ -84,7 +85,7 @@ class CustomKinetics400Dataset(Dataset):
     
     
     def __getitem__(self, idx):
-        # reverse = idx % 2
+        reverse = idx % 2
         
         idx = idx//self.repeated_sampling
         video_path = self.videos_path[idx]
@@ -93,8 +94,8 @@ class CustomKinetics400Dataset(Dataset):
         total_frames = len(vr)
         
         frame1_idx, frame2_idx, frame3_idx = self._get_frames_index(total_frames)
-        # if reverse:
-        #     frame1_idx, frame3_idx = frame3_idx, frame1_idx
+        if self.use_vire and reverse:
+            frame1_idx, frame3_idx = frame3_idx, frame1_idx
 
         frame1, frame2, frame3 = vr[frame1_idx].asnumpy(), vr[frame2_idx].asnumpy(), vr[frame3_idx].asnumpy()
         # print(frame1_idx, frame2_idx, frame3_idx)

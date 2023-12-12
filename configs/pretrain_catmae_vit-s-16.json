@@ -1,0 +1,17 @@
+{
+    "pretrain_name": "pretrain_catmae_vit-s-16",
+    "patch_size": 16,
+    "batch_size": 400,
+    "gpus": "0,1,2,3",
+    "epochs": 150,
+    "warmup_epochs": 5,
+    "per_save_epochs": 10,
+    "mask_ratios": [0.95, 0.95],
+    "rec_weights": [0.8, 1.0],
+    "frame_interval": [[4, 48],[4, 48]],
+    "decoder_dim_dep_head": [256, 4, 4],
+    "output_dir": "./pretrain/",
+    "log_dir": "./pretrain/",
+    "use_vire": false
+  }
+  
