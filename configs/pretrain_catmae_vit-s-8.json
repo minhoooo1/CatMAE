@@ -5,6 +5,7 @@
     "batch_size": 58,
     "gpus": "0,1,2,3",
     "epochs": 150,
+    "repeated_sampling": 2,
     "warmup_epochs": 5,
     "per_save_epochs": 10,
     "mask_ratios": [0.95, 0.95],
