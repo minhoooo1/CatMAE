@@ -19,6 +19,7 @@ Propagating the ground truth from the first frame to subsequent frames in the vi
 
 ## Data
 ```
+cd downstream/davis2017-seg
 bash download_process_data.sh
 ```
 the script performs the following operations:

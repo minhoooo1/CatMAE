@@ -55,6 +55,7 @@ We finetune model for 150 epochs. Before running following commands, remember to
 
 **CatMAE-ViT/16-Small**
 ```
+cd downstream/kinetics-400-action-recognition
 bash scripts/kinetics/2d_patch_vit_small_patch16_224/finetune.sh
 ```
 
