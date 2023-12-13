@@ -24,7 +24,7 @@ We use two datasets, [Kinetics-400](https://deepmind.com/research/open-source/ki
 To pre-train Cat-ViT-Small (recommended default), run the following commond:
 
 ```
-bash pretrain.sh configs/pretrain_catmae_vit-s-16.json
+python main_pretrain.py --config_file configs/pretrain_catmae_vit-s-16.json --data_path /path/to/Kinetics-400/videos_train 
 ```
 
 Some important arguments

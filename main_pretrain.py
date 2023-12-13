@@ -114,11 +114,9 @@ def get_args_parser():
     with open(args.config_file, 'r') as f:
         config = json.load(f)
     
-    
     for key in config.keys():
         if hasattr(args, key):
             setattr(args, key, config[key])
-            print(config[key], type(config[key]))
         else:
             raise ValueError(f"Key '{key}' found in config file is not a valid argument")
     
