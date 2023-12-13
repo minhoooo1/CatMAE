@@ -63,4 +63,4 @@ The Video segment instruction is in [DAVIS.md](downstream/davis2017-seg/DAVIS.md
 
 ## Action recognition in Kinetics-400
 
-### Coming Soon
+The Action recognition instruction is in [KINETICS400.md](downstream/kinetics-400-action-recognition/KINETICS400.md).
