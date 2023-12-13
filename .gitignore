@@ -12,3 +12,4 @@ small_ablation/
 small_ablation_ep50/
 
 *.pt
+*.pth

@@ -46,8 +46,8 @@ The following table provides the pre-trained checkpoints used in the paper
 <th valign="bottom">ViT/8-Small</th>
 <!-- TABLE BODY -->
 <tr><td align="left">pre-trained checkpoint</td>
-<td align="center"><a href="https://drive.google.com/file/d/1QUFeeb8U-WoDvOkI768R7B8BpmXw-jkg/view?usp=drive_link">download</a></td>
-<td align="center"><a href="https://drive.google.com/file/d/1jaYjnXYOJFSVoXfQWTJfPix6tddQ4YMF/view?usp=drive_link">download</a></td>
+<td align="center"><a href="https://drive.google.com/file/d/1xWrpSxZy6d3r_XnsZmXvqM1XUReJ7v97/view?usp=drive_link">download</a></td>
+<td align="center"><a href="https://drive.google.com/file/d/1ksYZJPa2pZ-NYWjYKLh05-bt_A40Rhm7/view?usp=drive_link">download</a></td>
 </tr>
 <tr><td align="left">DAVIS 2017 J&Fm</td>
 <td align="center">62.5</td>

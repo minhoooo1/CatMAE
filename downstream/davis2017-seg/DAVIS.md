@@ -46,11 +46,11 @@ You need to prepare the model weights for evaluation.
 | DINO |  ViT-S/16          |  dino_vits16 |  ***No need to download***  |
 | SiamMAE |  ViT-S/16       |  -      |  ***-***  |
 | CatMAE  |  ViT-S/16       |  -      |  ***-***  |
-| CatMAE-ViRe  |  ViT-S/16  |  vits16      |  [catmae-vit-s-16](https://drive.google.com/file/d/1QUFeeb8U-WoDvOkI768R7B8BpmXw-jkg/view?usp=drive_link)  |
+| CatMAE-ViRe  |  ViT-S/16  |  vits16      |  [catmae-vit-s-16](https://drive.google.com/file/d/1xWrpSxZy6d3r_XnsZmXvqM1XUReJ7v97/view?usp=drive_link)  |
 | DINO |  ViT-S/8           |  dino_vits8  |  ***No need to download***  |
 | SiamMAE |  ViT-S/8        |  -       |  ***-***  |
 | CatMAE  |  ViT-S/8        |  -       |  ***-***  |
-| CatMAE-ViRe  |  ViT-S/8   |  vits8       |  [catmae-vit-s-8](https://drive.google.com/file/d/1jaYjnXYOJFSVoXfQWTJfPix6tddQ4YMF/view?usp=drive_link)  |
+| CatMAE-ViRe  |  ViT-S/8   |  vits8       |  [catmae-vit-s-8](https://drive.google.com/file/d/1ksYZJPa2pZ-NYWjYKLh05-bt_A40Rhm7/view?usp=drive_link)  |
 
 
 
